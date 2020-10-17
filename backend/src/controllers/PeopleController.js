@@ -1,3 +1,4 @@
+import { response } from 'express'
 import db from '../db/connection'
 
 // listar todos as pessoas cadastradas
@@ -44,11 +45,10 @@ const create = async function (req, res) {
     await db('person').insert({
         name,
         surname,
-    }).then(response => {
+    }).returning('*').then(response => {
         return res.json({
             sucess: true,
-            name,
-            surname
+            data: response[0]
         })
     }, err => {
         return res.status(400).json({
@@ -85,19 +85,21 @@ const update = async function (req, res) {
 const destroy = async function (req, res) {
     const { id } = req.params
 
-    await db('person').where({ id }).del()
-    .then(sucess => {
-        return res.json({
-            success: true,
-            msg: "user desotry with successfull"
-        })
-    }, err => {
-        return res.status(400).json({
-            error:{
-                msg: 'ID invalido'
-            }
-        })
-    })
+    const person = await db('person').select('*').first().where({ id })
+
+    if (!person) {
+        return res.status(404)
+    }
+
+    const trx = await db.transaction()
+
+    await trx('contact_person').where({ person_id: id }).delete()
+
+    await trx('person').where({id}).delete()
+
+    await trx.commit()
+
+    return res.status(204).send()
 }
 
 export default {

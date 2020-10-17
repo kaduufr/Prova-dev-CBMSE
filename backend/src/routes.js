@@ -6,11 +6,11 @@ const routes = Router()
 
 // Rotas do People Controller
 
-routes.get('/', PeopleController.index )
+routes.get('/pessoas', PeopleController.index )
 routes.get('/:id', PeopleController.show )
 routes.post('/pessoa/cadastro', PeopleController.create )
 routes.patch('/:id/editar', PeopleController.update )
-routes.delete('/:id', PeopleController.destroy )
+routes.delete('/pessoa/:id', PeopleController.destroy )
 
 // Rotas do People Controller
 
