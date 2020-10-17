@@ -1,38 +1,91 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body, html {
+  position: absolute;
+  width: 100%;
+  height: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+#root  {
+  background: linear-gradient(to right, #7474bf, #348ac7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex: 1;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.app {
+  margin: 0px 10% ;
+  height: 80vh;
+  width: 80%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.home {
+  max-height: 100%;
+  height: auto;
+  padding: 16px 0px 0px 0px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.data-table {
+  margin-top: 32px;
+  max-height: 100%;
+  height: auto;
+}
+
+.table {
+  text-align: center;
+  min-width: 100%;
+}
+
+.itens-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.itens-list svg {
+  margin-right: 4px;
+}
+
+
+/* new contato*/
+
+.new-contato {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 600px;
+}
+
+.new-contato .header {
+  justify-content: start;
+}
+
+.new-contato form {
+  margin-top: 32px;
+  width: 360px;
+  max-width: 400px;
+}
+
+.new-contato .buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.button-form {
+  display: none;
 }
