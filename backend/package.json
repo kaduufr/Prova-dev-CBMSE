@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "agenda_backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,10 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "knex": "^0.21.6",
-    "pg": "^8.4.1"
+    "pg": "^8.4.1",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.5"
