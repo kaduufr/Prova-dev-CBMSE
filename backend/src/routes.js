@@ -7,13 +7,15 @@ const routes = Router()
 // Rotas do People Controller
 
 routes.get('/', PeopleController.index )
-routes.get('/:name', PeopleController.show )
-routes.put('/pessoa/cadastro', PeopleController.create )
-routes.patch('/:name/editar', PeopleController.update )
-routes.delete('/:name', PeopleController.destroy )
+routes.get('/:id', PeopleController.show )
+routes.post('/pessoa/cadastro', PeopleController.create )
+routes.patch('/:id/editar', PeopleController.update )
+routes.delete('/:id', PeopleController.destroy )
 
 // Rotas do People Controller
 
-
+routes.post('/:id/contatos/adicionar', ContatoController.create)
+routes.patch('/:id/contato/editar/', ContatoController.update)
+routes.delete('/:id/contato/:contact_id', ContatoController.destroy)
 
 export default routes
