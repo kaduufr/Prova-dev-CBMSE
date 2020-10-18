@@ -31,6 +31,7 @@ const HomePessoa = ({location}) => {
             })
         }
 
+        console.log(location.state)
         getInfoByContact(location.state.id)
     }, [])
 
@@ -79,6 +80,14 @@ const HomePessoa = ({location}) => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className="content">
+                <spam>
+                    <i className="subtitle">
+                        Total de contatos: {contacts.length}
+                    </i>
+                </spam>
             </div>
 
             <div className="contacts-table">

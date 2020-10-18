@@ -32,7 +32,7 @@ const EditarPessoa = ({location}) => {
             name,
             surname
         }).then(response => {
-            history.go('/')
+            history.goBack()
         }, err => {
             alert('Error ao salvar dados')
             history.goBack()
