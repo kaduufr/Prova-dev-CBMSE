@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import { formatNameContact, slugNameAndSurname } from '../../helpers/HelperPerson';
 import api from '../../services/api';
 
-const Home = ({history}) => {
+const Home = () => {
 
     const [contacts, setContacts] = useState([])
 
@@ -14,7 +15,6 @@ const Home = ({history}) => {
         })
     }, [])
 
-
     async function deletePerson(id) {
         if (window.confirm('Ter certeza que gostaria de excluir esse contato?')) {
             await api.delete('pessoa/' + id).then(response => {
@@ -23,7 +23,7 @@ const Home = ({history}) => {
                 alert('Erro ao excluir pessoa')
             })
         }
-    }
+    }    
 
     return (
         <div className="home">
@@ -49,36 +49,54 @@ const Home = ({history}) => {
                         </thead>
                         <tbody>
                             {
-                                contacts.map(contact => (
-                                    <tr key={contact.id}>
-                                        <th>{ contact.name} </th>
-                                        <th className="itens-list">
-                                            <Link to={"/pessoa/" + contact.id + '/contatos/criar'} className=" has-text-info">
-                                                <i className="fas fa-plus"></i>
-                                                Adicionar Contato
-                                            </Link >
-                                            <Link to={'/pessoa/'+ contact.id} className=" has-text-black">
-                                                <i className="fas fa-eye"></i>
-                                                Visualizar
-                                            </Link >
-                                            <Link to={{
-                                                pathname: "/pessoa/" + contact.id + '/editar',
-                                                state: {
-                                                    id: contact.id,
-                                                    name: contact.name,
-                                                    surname: contact.surname
-                                                }
-                                            }} className=" has-text-primary	">
-                                                <i className="fas fa-pen"></i>
-                                                Editar
-                                            </Link >
-                                            <a onClick={e => deletePerson(contact.id)} className=" has-text-danger	">
-                                                <i className="fas fa-trash-alt"></i>
-                                                Deletar
-                                            </a >
-                                        </th>
-                                    </tr>
-                                ))
+                                contacts.map(contact => {
+
+                                    let nameSlugged = slugNameAndSurname(contact.name, contact.surname)
+                                    let nameUpper = formatNameContact(contact.name, contact.surname)
+
+                                    return (
+                                        <tr key={contact.id}>
+                                            <th>{ nameUpper } </th>
+                                            <th className="itens-list">
+                                                <Link to={{
+                                                    pathname: "/contato/" + nameSlugged + '/adicionar',
+                                                    state: {
+                                                        person_id: contact.id
+                                                    }
+                                                }} className=" has-text-info">
+                                                    <i className="fas fa-plus"></i>
+                                                    Adicionar Contato
+                                                </Link >
+                                                <Link to={{
+                                                    pathname:'/pessoa/'+ nameSlugged,
+                                                    state: {
+                                                        id: contact.id,
+                                                        fullName: nameUpper,
+                                                        nameSlugged
+                                                    }
+                                                }} className=" has-text-black">
+                                                    <i className="fas fa-eye"></i>
+                                                    Visualizar
+                                                </Link >
+                                                <Link to={{
+                                                    pathname: "/pessoa/" + nameSlugged + '/editar',
+                                                    state: {
+                                                        id: contact.id,
+                                                        name: contact.name,
+                                                        surname: contact.surname
+                                                    }
+                                                }} className=" has-text-primary	">
+                                                    <i className="fas fa-pen"></i>
+                                                    Editar
+                                                </Link >
+                                                <a onClick={e => deletePerson(contact.id)} className=" has-text-danger	">
+                                                    <i className="fas fa-trash-alt"></i>
+                                                    Deletar
+                                                </a >
+                                            </th>
+                                        </tr>
+                                    )
+                                })
                             }
                         </tbody>
                     </table>

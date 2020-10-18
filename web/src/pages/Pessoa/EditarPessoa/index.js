@@ -7,40 +7,31 @@ const EditarPessoa = ({location}) => {
 
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
+    const [id, setId] = useState('')
 
     const history = useHistory()
 
     const actions = {
         setName,
         setSurname,
-        editPerson
+        submit: editPerson
     }
 
     useEffect(() => {
 
-        if (!location.state.id) {
-            history.go('/')
-        }
-
         setName(location.state.name)
         setSurname(location.state.surname)
+        setId(location.state.id)
     }, [])
 
     async function editPerson(e) {
         e.preventDefault()
 
-        await api.post('pessoa/cadastro', {
+        await api.patch('/'+ id + '/editar', {
             name,
             surname
         }).then(response => {
-
-            let { id } = response.data.data
-
-            setName('')
-            setSurname('')
-
-            alert('Pessoa editada com sucesso')
-            history.push('/pessoa/' + id )
+            history.push('/')
         })
     }
 

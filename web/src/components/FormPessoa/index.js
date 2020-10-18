@@ -2,7 +2,7 @@ import React from 'react'
 
 const FormPessoa = ({ name, surname, actions}) => {
     return (
-        <form onSubmit={e =>actions.createPerson(e)}>
+        <form onSubmit={e =>actions.submit(e)}>
             <div className="field">
                 <label className="label">Nome</label>
                 <div className="control">
