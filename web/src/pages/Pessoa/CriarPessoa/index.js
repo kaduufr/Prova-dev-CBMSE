@@ -20,6 +20,7 @@ const CriarPessoa = () => {
         submit: createPerson
     }
 
+    // Buscar pessoas cadastradas quando a aplicação inicia
     useEffect(() => {
         async function getAllContacts() {
             await api.get('pessoas').then(response => {
@@ -29,24 +30,26 @@ const CriarPessoa = () => {
         getAllContacts()
     }, [])
 
-    async function hasPerson() {
+    // Verifica se ha um contato com aquele nome, se sim, retorna o id do contato para enviar o usuario para a tela do contato
+    async function searchPerson() {
         const person = contacts.filter(contact => contact.name === name && contact.surname === surname)
-        setId(person[0].id)
+        if (person.length > 0) {
+            setId(person[0].id)
+        }
         return person.length > 0
     }
 
+    // Função para criação de pessoa
     async function createPerson(e) {
         e.preventDefault()
 
         let nameSlugged = slugNameAndSurname(name, surname)
         let fullName = formatNameContact(name, surname)
 
-        const res = await hasPerson()
+        const hasPerson = await searchPerson()
 
-        console.log(res)
-
-        if (res === true) {
-            alert('Essa pessoa ja foi cadastrada')
+        if (hasPerson === true) {
+            alert('Essa pessoa ja esta cadastrada')
             history.push('/pessoa/' + nameSlugged, {
                 id,
                 fullName,
@@ -60,11 +63,11 @@ const CriarPessoa = () => {
                 surname
             }).then(response => {
     
-                let { cId } = response.data.data
+                let {data: person_id} = response.data
     
                 alert('Pessoa cadastrada com sucesso')
                 history.push('/pessoa/' + nameSlugged , {
-                    cId,
+                    id: person_id,
                     nameSlugged,
                     fullName,
                     name,

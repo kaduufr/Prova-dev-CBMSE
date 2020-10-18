@@ -23,6 +23,7 @@ const CriarContato = ({location}) => {
 
     useEffect(() => {
         
+        // função para buscar todos os dados de uma pessoa (nome, sobrenome e todos os contatos cadastrados)
         async function getInfoByContact(id) {
             await api.get('/'+ id).then(response => {
                 setInfo(response.data.dataPerson)
@@ -30,10 +31,17 @@ const CriarContato = ({location}) => {
             })
         }
 
+        // função para obter todos os tipos de contatos cadastrados
         async function getTypeContacts() {
             await api.get('types').then(response => {
                 setTypeContact(response.data)
             })
+        }
+
+        // evitar erro apos requisição
+        if (!location.state) {
+            setContent('')
+            history.goBack()
         }
 
         getInfoByContact(location.state.person_id)
@@ -41,13 +49,14 @@ const CriarContato = ({location}) => {
 
     }, [])
 
+    // função que retorna true se encontrar um contato igual
     async function searchContact() {
         let contactFiltered = contacts.filter(contact => content === contact.contact && selectedOption === contact.type_contact_id)
         return contactFiltered.length > 0 
     }
 
-    async function saveData() {
-
+    // função para armazenar dados do contato, aonde caso dê sucesso ela vai redurecionar para a pagina de todos os contatos da pessoa
+    async function saveData(e) {
         const res = await searchContact()
 
         let nameSlugged = slugNameAndSurname(info.name, info.surname)
@@ -63,20 +72,25 @@ const CriarContato = ({location}) => {
                         id: info.id,
                         fullName,
                         nameSlugged
+                    },  err => {
+                        console.error(err)
+                        alert('Falha ao criar contato')
                     })
                 })
-            } else {
-                history.goBack()
-            }
+            } 
         } else {
             await api.post('/' + info.id + '/contatos/adicionar', {
                 contact: content,
                 type_contact_id: selectedOption
             } ).then(response => {
+                alert('Contato salvo com sucesso')
                 history.push('/pessoa/' + nameSlugged, {
                     id: info.id,
                     fullName,
                     nameSlugged
+                }, err => {
+                    console.error(err)
+                    alert('Falha ao criar contato')
                 })
             })
         }
@@ -117,10 +131,10 @@ const CriarContato = ({location}) => {
                             Contatos:
                         </h4>
                     </div>
-                    {<FormContato actions={actions} typeContact={typeContact} />}
+                    {<FormContato actions={actions} typeContact={typeContact} content={content} />}
                 </div>
                 <div className="buttons">
-                    <button onClick={e => saveData()} className="button is-info is-outlined">Adicionar</button>
+                    <button onClick={e => saveData(e)} className="button is-info is-outlined">Adicionar</button>
                     <button onClick={e=> history.goBack()} className="button is-danger is-outlined">Cancelar</button>
                 </div>
 

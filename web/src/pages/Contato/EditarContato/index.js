@@ -24,7 +24,7 @@ const EditarContato = ({location}) => {
     }
 
     useEffect(() => {
-        
+        // carregar dados obtidos da tela anterior
         setName(location.state.contact_name)
         setSurname(location.state.contact_surname)
 
@@ -33,8 +33,7 @@ const EditarContato = ({location}) => {
         setPersonID(location.state.contact.person_id)
         setTypeContactID(location.state.contact.type_contact_id)
 
-        console.log(location.state)
-
+        // função para obter todos os tipos de contatos cadastrados
         async function getTypeContacts() {
             await api.get('types').then(response => {
                 setTypeContact(response.data)
@@ -45,6 +44,7 @@ const EditarContato = ({location}) => {
 
     }, [])
 
+    // função para editar um contato de uma pessoa atravez do id do contato
     async function updateData() {
         await api.patch('/' + personID + '/contato/editar/' + id, {
             contact: content,

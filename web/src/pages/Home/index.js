@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { formatNameContact, slugNameAndSurname } from '../../helpers/HelperPerson';
 import api from '../../services/api';
+import './Pessoa.css'
+import './Contato.css'
 
 const Home = () => {
 
@@ -10,11 +12,13 @@ const Home = () => {
     const location = useHistory()
 
     useEffect(() => {
+        // carrega todas as pessoas cadastradas
         api.get('pessoas').then(response => {
             setContacts(response.data)
         })
     }, [])
 
+    // função para deletar uma pessoa atravez do id
     async function deletePerson(id) {
         if (window.confirm('Ter certeza que gostaria de excluir esse contato?')) {
             await api.delete('pessoa/' + id).then(response => {
@@ -29,15 +33,18 @@ const Home = () => {
         <div className="home">
             <div className="container is-max-desktop mg-16">
                 <div className="header">
-                    <h3 className="title">Lista de Contatos</h3>
+                    <div>
+                        <h3 className="title">Lista de Contatos</h3>
+                        <spam>
+                            <i>
+                                Total: {contacts.length}
+                            </i>
+                        </spam>
+                    </div>
                     <Link to="pessoa/new" className="button is-info is-outlined">+ Adicionar Pessoa</Link>
                 </div>
 
-                {/* <div className="info subtitle">
-                    <p>
-                        Total de Contatos: 16
-                    </p>
-                </div> */}
+                
 
                 <div className="data-table">
                     <table className="table">

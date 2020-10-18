@@ -4,7 +4,7 @@ import api from '../../../services/api'
 
 const HomePessoa = ({location}) => {
 
-
+    const [id, setId] = useState('')
     const [info, setInfo] = useState({})
     const [contacts, setContacts] = useState([])
     
@@ -15,24 +15,26 @@ const HomePessoa = ({location}) => {
     const [nameSlugged, setNameSlugged] = useState('')
 
     useEffect(() => {
-
+        
+        // salva os dados vindo da pagina anterior para carregar as informações
+        setId(location.state.person_id)
         setNameSlugged(location.state.nameSlugged)
         setFullName(location.state.fullName)
         setName(location.state.name)
         setSurname(location.state.surname)
 
+        // carrega os dados da pessoa, e os contatos salvos
         async function getInfoByContact(id) {
             await api.get('/' + id).then(response => {
                 setInfo(response.data.dataPerson)
                 setContacts(response.data.dataContacts)
-                console.log(response.data)
             })
         }
 
         getInfoByContact(location.state.id)
-
     }, [])
 
+    // funçção para deletar o contato
     async function deleteContact(contact_id) {
         if (window.confirm('Ter certeza que gostaria de excluir esse contato?')) {
             await api.delete('/' + info.id + '/contato/' + contact_id).then(response => {

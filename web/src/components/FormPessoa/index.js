@@ -1,5 +1,7 @@
 import React from 'react'
 
+// as actions sao todas as funções executadas, como onChanges nos inputs e o onSubmit do form
+// os campos name e surname podem vim vazios ou com algum dado, dependendo da ação a ser executada (criar ou editar)
 const FormPessoa = ({ name, surname, actions}) => {
     return (
         <form onSubmit={e =>actions.submit(e)}>

@@ -24,6 +24,7 @@ const EditarPessoa = ({location}) => {
         setId(location.state.id)
     }, [])
 
+    // funçção para editar a pessoa
     async function editPerson(e) {
         e.preventDefault()
 
@@ -31,7 +32,10 @@ const EditarPessoa = ({location}) => {
             name,
             surname
         }).then(response => {
-            history.push('/')
+            history.go('/')
+        }, err => {
+            alert('Error ao salvar dados')
+            history.goBack()
         })
     }
 

@@ -1,8 +1,10 @@
 import React from 'react';
 
+// as actions sao todas as funções executadas, como onChanges nos inputs e o onSubmit do form
+// os campos typeContactId e content podem vim vazios ou com algum dado, dependendo da ação a ser executada (criar ou editar)
 const FormContato = ({typeContact , typeContactId, content, actions}) => {
     return (
-        <form onSubmit={actions.submit} >
+        <form onSubmit={e => actions.submit(e)} >
             <div className="field is-horizontal">
                 <div className="select">
                     <select value={actions.selectedOption} onChange={e => actions.setSelectedOption(e.target.value)} >
