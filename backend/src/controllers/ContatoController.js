@@ -25,8 +25,27 @@ const create = async function (req, res) {
     })
 }
 const update = async function (req, res) {
-    const { id: person_id} = req.params
-    const { contatos } = req.body
+    const { id: person_id, contact_id} = req.params
+    const { contact, type_id } = req.body
+
+    await db('contact_person').where({ person_id, id: contact_id }).update({
+        contact,
+        type_contact_id: type_id
+    }).then(response => {
+        return res.json({
+            success: true,
+            id: contact_id,
+            contact,
+            person_id,
+            type_contact_id: type_id
+        })
+    }, err => {
+        return res.status(400).json({
+            error:{
+                msg: 'ID invalido'
+            }
+        })
+    })
 
 }
 const destroy = async function (req, res) {

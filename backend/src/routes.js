@@ -1,8 +1,13 @@
 import {Router} from 'express'
 import ContatoController from './controllers/ContatoController'
 import PeopleController from './controllers/PeopleController'
+import TypeContactController from './controllers/TypeContactController'
 
 const routes = Router()
+
+// Rotas do TypeContact Controller
+
+routes.get('/types', TypeContactController.index)
 
 // Rotas do People Controller
 
@@ -15,7 +20,9 @@ routes.delete('/pessoa/:id', PeopleController.destroy )
 // Rotas do People Controller
 
 routes.post('/:id/contatos/adicionar', ContatoController.create)
-routes.patch('/:id/contato/editar/', ContatoController.update)
+routes.patch('/:id/contato/editar/:contact_id', ContatoController.update)
 routes.delete('/:id/contato/:contact_id', ContatoController.destroy)
+
+
 
 export default routes

@@ -1,4 +1,3 @@
-import { response } from 'express'
 import db from '../db/connection'
 
 // listar todos as pessoas cadastradas
@@ -6,7 +5,11 @@ const index = async function (req, res) {
     const data = await db('person').select('*')
 
     if (!data) {
-        return res.error(new Error())
+        return res.status(404).json({
+            error: {
+                msg: 'Erro na requisição'
+            }
+        })
     }
 
     return res.json(data)
