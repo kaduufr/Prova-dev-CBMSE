@@ -6,12 +6,12 @@ import api from '../../../services/api'
 
 const CriarPessoa = () => {
 
-    const [id, setId] = useState('')
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
 
     const [contacts, setContacts] = useState([])
 
+    let person_id
     const history = useHistory()
 
     const actions = {
@@ -34,7 +34,7 @@ const CriarPessoa = () => {
     async function searchPerson() {
         const person = contacts.filter(contact => contact.name === name && contact.surname === surname)
         if (person.length > 0) {
-            setId(person[0].id)
+            person_id = person[0].id
         }
         return person.length > 0
     }
@@ -51,7 +51,7 @@ const CriarPessoa = () => {
         if (hasPerson === true) {
             alert('Essa pessoa ja esta cadastrada')
             history.push('/pessoa/' + nameSlugged, {
-                id,
+                id: person_id,
                 fullName,
                 nameSlugged,
                 name,

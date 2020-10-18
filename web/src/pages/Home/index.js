@@ -36,7 +36,7 @@ const Home = () => {
                     <div>
                         <h3 className="title">Lista de Contatos</h3>
                         <spam>
-                            <i>
+                            <i className="subtitle">
                                 Total: {contacts.length}
                             </i>
                         </spam>
