@@ -9,6 +9,9 @@ exports.up = function(knex) {
 
         table.foreign('person_id').references('id').inTable('person')
         table.foreign('type_contact_id').references('id').inTable('type_contact')
+
+        table.timestamp('created_at').defaultTo(knex.fn.now());
+
     })
 };
 

@@ -1,6 +1,7 @@
 import db from '../db/connection'
 
-
+// url: http://localhost:3333/:id/contatos/adicionar
+// adiciona um novo contato no bd
 const create = async function (req, res) {
     const { id } = req.params
     const { contact, type_contact_id } = req.body
@@ -24,6 +25,9 @@ const create = async function (req, res) {
         })
     })
 }
+
+// url: http://localhost:3333/:id/contato/editar/:contact_id
+//  atualiza um contato atraves do id da pessoa, e o id do contato
 const update = async function (req, res) {
     const { id: person_id, contact_id} = req.params
     const { contact, type_id } = req.body
@@ -48,6 +52,9 @@ const update = async function (req, res) {
     })
 
 }
+
+// url: http://localhost:3333/:id/contato/:contact_id
+// remove um contato atraves do id da pessoa e do contato
 const destroy = async function (req, res) {
     const { id: person_id, contact_id} = req.params
 

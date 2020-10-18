@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import ContatoController from './controllers/ContatoController'
+import ContactController from './controllers/ContactController'
 import PeopleController from './controllers/PeopleController'
 import TypeContactController from './controllers/TypeContactController'
 
@@ -17,11 +17,11 @@ routes.post('/pessoa/cadastro', PeopleController.create )
 routes.patch('/:id/editar', PeopleController.update )
 routes.delete('/pessoa/:id', PeopleController.destroy )
 
-// Rotas do People Controller
+// Rotas do Contact Controller
 
-routes.post('/:id/contatos/adicionar', ContatoController.create)
-routes.patch('/:id/contato/editar/:contact_id', ContatoController.update)
-routes.delete('/:id/contato/:contact_id', ContatoController.destroy)
+routes.post('/:id/contatos/adicionar', ContactController.create)
+routes.patch('/:id/contato/editar/:contact_id', ContactController.update)
+routes.delete('/:id/contato/:contact_id', ContactController.destroy)
 
 
 

@@ -4,6 +4,8 @@ exports.up = function(knex) {
       table.increments('id').primary()
       table.string('name', 50).notNullable()
       table.string('surname', 50).notNullable()
+
+      table.timestamp('created_at').defaultTo(knex.fn.now());
   })
 };
 
