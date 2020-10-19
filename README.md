@@ -37,3 +37,43 @@ O desafio será avaliado através dos seguintes critérios.
  - As mensagens de commit são claras?
 
 # Duvidas: jonas.nascimento@cbm.se.gov.br ou abrir uma issue
+
+
+## Intruções de uso: 
+
+## Como usar
+
+
+
+- ### **Pré-requisitos**
+
+  - É **necessário** possuir o **[Node.js](https://nodejs.org/en/)** instalado na máquina
+  - Também, é **preciso** ter um gerenciador de pacotes seja o **[NPM](https://www.npmjs.com/)** ou **[Yarn](https://yarnpkg.com/)**.
+
+1. Faça um clone :
+
+```sh
+  $ git clone https://github.com/kaduufr/Prova-dev-CBMSE
+```
+
+2. Executando a Aplicação:
+
+```sh
+  # Inicie a aplicação backend  
+  # Acesse a pasta backend
+  $ cd backend
+
+  # Instale as dependências
+  $ npm install
+
+  ## Crie o banco de dados
+  $ npm run knex:migrate
+  $ npm run knex:seed
+
+  # Inicie a aplicação web
+  $ cd web
+  $ npm start
+
+
+  # Rodando
+```

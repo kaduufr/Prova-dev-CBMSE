@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon -r esm src/server.js",
-    "dev": "cross-env NODE_ENV='staged' nodemon -r esm src/server.js  "
+    "dev": "cross-env NODE_ENV='staged' nodemon -r esm src/server.js",
+    "knex:seed": "npx knex --knexfile knexfile.js seed:run",
+    "knex:migrate": "npx knex --knexfile knexfile.js migrate:latest"
   },
   "keywords": [],
   "author": "",
