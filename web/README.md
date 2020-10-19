@@ -35,28 +35,28 @@ Essa aplicação é uma agenda, onde o usuario poderá cadastrar informações (
 - Pagina inicial
 
 <h1 align="center">
-    <img alt="Web" src="../.github/tela_inicial.png" width="600px">
+    <img alt="Web" src=".github/tela_inicial.png" width="600px">
 </h1>
 
 - Criar de pessoa
 <h1 align="center">
-    <img alt="Web" src="../.github/criar_pessoa.png" width="600px">
+    <img alt="Web" src=".github/criar_pessoa.png" width="600px">
 </h1>
 - Editar pessoa
 <h1 align="center">
-    <img alt="Web" src="../.github/editar_pessoa.png" width="600px">
+    <img alt="Web" src=".github/editar_pessoa.png" width="600px">
 </h1>
 - Mostrar pessoa e contatos
 <h1 align="center">
-    <img alt="Web" src="../.github/contatos.png" width="600px">
+    <img alt="Web" src=".github/contatos.png" width="600px">
 </h1>
 - Criar contato
 <h1 align="center">
-    <img alt="Web" src="../.github/criar_contato.png" width="600px">
+    <img alt="Web" src=".github/criar_contato.png" width="600px">
 </h1>
 - Editar contato
 <h1 align="center">
-    <img alt="Web" src="../.github/editar_contato.png" width="600px">
+    <img alt="Web" src=".github/editar_contato.png" width="600px">
 </h1>
 
 ### **Informações**
