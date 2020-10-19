@@ -2,7 +2,7 @@
 
 ## Sobre
 
-Essa aplicação é um requisito para concorrer a vaga de programador junior na CBMSE
+Essa aplicação é uma agenda, onde o usuario poderá cadastrar informações ( e-mail, telefone ) em um contato.
 
 ## Como usar
 
@@ -76,3 +76,6 @@ Essa aplicação é um requisito para concorrer a vaga de programador junior na 
       $ http://localhost:3333/:id/contato/:contact_id
   ```
 
+### **Informações**
+
+- O banco de dados utilizado na aplicação é o SQLite3.

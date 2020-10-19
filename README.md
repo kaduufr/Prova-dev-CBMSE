@@ -70,8 +70,17 @@ O desafio será avaliado através dos seguintes critérios.
   $ npm run knex:migrate
   $ npm run knex:seed
 
+  # Inicie a API
+  $ npm start
+
   # Inicie a aplicação web
+  # Acesse a pasta web
   $ cd web
+
+  # Instale as dependências
+  $ npm install
+
+  # Inicie a aplicação web
   $ npm start
 
 

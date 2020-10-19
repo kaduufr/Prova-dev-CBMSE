@@ -68,14 +68,14 @@ const HomePessoa = ({location}) => {
                     <div className="field">
                         <label className="label">Nome</label>
                         <div className="control">
-                            <input className="input is-success"  value={name ? name : info.name} disabled />
+                            <input className="input"  value={name ? name : info.name} disabled />
                         </div>
                     </div>
                     <div className="form-data-disabled">
                         <div className="field">
                             <label className="label">Sobrenome</label>
                             <div className="control">
-                                <input className="input is-success"  value={surname ? surname : info.surname} disabled />
+                                <input className="input"  value={surname ? surname : info.surname} disabled />
                             </div>
                         </div>
                     </div>
